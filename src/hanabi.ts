@@ -1,4 +1,5 @@
 import * as maquette from "maquette";
+import { shuffle } from "./util";
 
 let h = maquette.h;
 let projector = maquette.createProjector();
@@ -31,20 +32,3 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log("Hello, World!");
   projector.append(document.body, render);
 });
-
-function shuffle<T>(xs: T[]) {
-    for (let i = xs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [xs[i], xs[j]] = [xs[j], xs[i]];
-    }
-}
-
-function cardColor(card: string) {
-  switch (card[0]) {
-    case "r": return "red";
-    case "b": return "blue";
-    case "y": return "yellow";
-    case "w": return "white";
-  }
-  return "grey";
-}
