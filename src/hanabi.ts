@@ -1,29 +1,31 @@
 import * as maquette from "maquette";
 import { shuffle } from "./util";
+import { Tile, newDeck } from "./tile";
 
 let h = maquette.h;
 let projector = maquette.createProjector();
 
-let hands: string[][] = [
-  ["b4", "r3", "y5", "w1", "p1"],
-  ["b4", "r3", "y5", "w1", "p1"],
-  ["b4", "r3", "y5", "w1", "p1"],
-  ["b4", "r3", "y5", "w1", "p1"]
-]
+let deck: Tile[] = newDeck();
+let hands: Tile[][] = [];
+for (let i = 0; i < 4; i++) {
+  let hand: Tile[] = [];
+  for (let j = 0; j < 4; j++) {
+    hand.push(deck.pop()!);
+  }
+  hands.push(hand);
+}
 
 function render() {
   return h('div', [
+    h('div', { id: "draw" }, [
+      deck.length.toString()
+    ]),
     hands.map((hand, idx) => {
-      let tiles = hand.map(card => h('img.tile', {
-        src: `imgs/tiles/${card}.svg`
-      }));
-      tiles.push(h('button', {
-        onclick: () => shuffle(hand)
-      }));
+      let tiles = hand.map(tile => tile.view());
       return h('div', tiles);
     }),
-    h('img', { id: "trash", src: "imgs/trashcan.svg" }),
-    h('div', { id: "table" }),
+    h('div', { id: "play" }),
+    h('div', { id: "discard" }),
   ]);
 }
 
