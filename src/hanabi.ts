@@ -1,7 +1,9 @@
+import * as maquette from "maquette";
+
 let h = maquette.h;
 let projector = maquette.createProjector();
 
-let hands = [
+let hands: string[][] = [
   ["b4", "r3", "y5", "w1", "p1"],
   ["b4", "r3", "y5", "w1", "p1"],
   ["b4", "r3", "y5", "w1", "p1"],
@@ -30,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
   projector.append(document.body, render);
 });
 
-function shuffle(xs) {
+function shuffle<T>(xs: T[]) {
     for (let i = xs.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [xs[i], xs[j]] = [xs[j], xs[i]];
     }
 }
 
-function cardColor(card) {
+function cardColor(card: string) {
   switch (card[0]) {
     case "r": return "red";
     case "b": return "blue";
