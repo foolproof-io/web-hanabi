@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hanabi</title>
+    <style>
+    div .card {
+      width: 40px;
+      height: 40px;
+      border-style: solid;
+      border-width: 2px;
+      margin: 3px;
+      text-align: center;
+    }
+    </style>
+    <script src="https://unpkg.com/maquette@3.3.0/dist/maquette.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
+    <script>
+      let h = maquette.h;
+      let projector = maquette.createProjector();
+
+      let hand = ["b4", "r3", "y5", "w1", "w1"];
+
+      function render() {
+        return h('div', [
+          hand.map(card => h('div.card', {
+            style: `background-color: ${cardColor(card)}`
+          }, [ card[1] ])),
+          h('button', {
+            onclick: () => shuffle(hand)
+          })
+        ]);
+      }
+
+      // Initializes the projector
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log("Hello, World!");
+        projector.append(document.body, render);
+      });
+
+      function shuffle(xs) {
+          for (let i = xs.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [xs[i], xs[j]] = [xs[j], xs[i]];
+          }
+      }
+
+      function cardColor(card) {
+        switch (card[0]) {
+          case "r": return "red";
+          case "b": return "blue";
+          case "y": return "yellow";
+          case "w": return "white";
+        }
+        return "grey";
+      }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
