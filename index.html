@@ -3,13 +3,10 @@
   <head>
     <title>Hanabi</title>
     <style>
-    div .card {
-      width: 40px;
-      height: 40px;
-      border-style: solid;
-      border-width: 2px;
-      margin: 3px;
-      text-align: center;
+    .tile {
+      background-color: lightgrey;
+      width: 90px;
+      height: 120px;
     }
     </style>
     <script src="https://unpkg.com/maquette@3.3.0/dist/maquette.umd.js"></script>
@@ -18,13 +15,13 @@
       let h = maquette.h;
       let projector = maquette.createProjector();
 
-      let hand = ["b4", "r3", "y5", "w1", "w1"];
+      let hand = ["b4", "r3", "y5", "w1", "p1"];
 
       function render() {
         return h('div', [
-          hand.map(card => h('div.card', {
-            style: `background-color: ${cardColor(card)}`
-          }, [ card[1] ])),
+          hand.map(card => h('img.tile', {
+            src: `tiles/${card}.svg`
+          })),
           h('button', {
             onclick: () => shuffle(hand)
           })
