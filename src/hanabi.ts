@@ -16,16 +16,17 @@ for (let i = 0; i < 4; i++) {
 }
 
 function render() {
-  return h('div', [
+  return h('div', { id: "board" }, [
     h('div', { id: "draw" }, [
       deck.length.toString()
     ]),
     hands.map((hand, idx) => {
       let tiles = hand.map(tile => tile.view());
-      return h('div', tiles);
+      return h('div', { id: `player${idx}` }, tiles);
     }),
     h('div', { id: "play" }),
     h('div', { id: "discard" }),
+    h('textarea', { id: "log", disabled: true }),
   ]);
 }
 
