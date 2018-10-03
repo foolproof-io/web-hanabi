@@ -1,6 +1,7 @@
 import * as maquette from "maquette";
 import { shuffle } from "./util";
 import { Tile, newDeck } from "./tile";
+import { Hint, Hints } from "./hint";
 
 let h = maquette.h;
 let projector = maquette.createProjector();
@@ -25,6 +26,7 @@ function render() {
       return h('div', { id: `player${idx}` }, tiles);
     }),
     h('div', { id: "play" }),
+    h('div', { id: "hint" }, Hints.ALL.map(hint => hint.view())),
     h('div', { id: "discard" }),
     h('textarea', { id: "log", disabled: true }),
   ]);

@@ -1,7 +1,7 @@
 import { VNode, h } from "maquette";
 import { shuffle } from "./util";
 
-enum Color {
+export enum Color {
     Blue,
     Green,
     Rainbow,
@@ -10,7 +10,7 @@ enum Color {
     Yellow,
 }
 
-class Colors {
+export class Colors {
     static ALL: Color[] = [ Color.Blue, Color.Green, Color.Rainbow, Color.Red, Color.White, Color.Yellow ];
     static toString(c: Color): string {
         switch (c) {
@@ -24,7 +24,7 @@ class Colors {
     }
 }
 
-enum Rank {
+export enum Rank {
     One,
     Two,
     Three,
@@ -32,7 +32,7 @@ enum Rank {
     Five,
 }
 
-class Ranks {
+export class Ranks {
     static ALL: Rank[] = [ Rank.One, Rank.Two, Rank.Three, Rank.Four, Rank.Five ];
     static toString(r: Rank): string {
         switch (r) {
